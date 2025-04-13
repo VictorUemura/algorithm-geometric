@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 
 namespace ProcessamentoImagens
 {
@@ -92,7 +88,7 @@ namespace ProcessamentoImagens
             unsafe
             {
                 byte* srcPointer = (byte*)bitmapDataSrc.Scan0.ToPointer();
-                int r, g, b;
+               
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
@@ -132,7 +128,7 @@ namespace ProcessamentoImagens
             unsafe
             {
                 byte* srcPointer = (byte*)bitmapDataSrc.Scan0.ToPointer();
-                int r, g, b;
+              
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
@@ -202,7 +198,7 @@ namespace ProcessamentoImagens
             unsafe
             {
                 byte* srcPointer = (byte*)bitmapDataSrc.Scan0.ToPointer();
-                int r, g, b;
+               
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
