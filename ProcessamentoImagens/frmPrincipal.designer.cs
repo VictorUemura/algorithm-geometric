@@ -57,6 +57,7 @@ namespace ProcessamentoImagens // Or change to CG_Trab if that's your actual pro
             this.btnClear = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel(); // Optional status label
+            this.btnAbrirPoligonos = new System.Windows.Forms.Button();
 
             // If using PictureBox pictBoxImg1 from your example:
             // ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
@@ -284,6 +285,17 @@ namespace ProcessamentoImagens // Or change to CG_Trab if that's your actual pro
                                                                       //
                                                                       // frmPrincipal
                                                                       //
+                                                                      // --- Configuração do btnAbrirPoligonos --- << MOVER PARA CÁ
+            this.btnAbrirPoligonos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAbrirPoligonos.Location = new System.Drawing.Point(770, 450);
+            this.btnAbrirPoligonos.Name = "btnAbrirPoligonos";
+            this.btnAbrirPoligonos.Size = new System.Drawing.Size(180, 30);
+            this.btnAbrirPoligonos.TabIndex = 7; //INCREMENTAR TabIndex se necessário
+            this.btnAbrirPoligonos.Text = "Polígonos e Transformações";
+            this.btnAbrirPoligonos.UseVisualStyleBackColor = true;
+            this.btnAbrirPoligonos.Click += new System.EventHandler(this.btnAbrirPoligonos_Click);
+            // --- Fim da Configuração ---
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F); // Match your project settings
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 593); // Adjust overall form size
@@ -294,6 +306,8 @@ namespace ProcessamentoImagens // Or change to CG_Trab if that's your actual pro
             this.Controls.Add(this.groupBoxLinhaAlg);
             this.Controls.Add(this.groupBoxShape);
             this.Controls.Add(this.drawingPanel); // Or pictBoxImg1
+            this.Controls.Add(this.btnAbrirPoligonos); // << ADICIONAR JUNTO COM OS OUTROS
+
             this.Margin = new System.Windows.Forms.Padding(4); // Match your project settings
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -346,6 +360,7 @@ namespace ProcessamentoImagens // Or change to CG_Trab if that's your actual pro
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.StatusStrip statusStrip1; // Optional status bar
         private System.Windows.Forms.ToolStripStatusLabel lblStatus; // Optional status label
+        private System.Windows.Forms.Button btnAbrirPoligonos;
 
         // Keep OpenFileDialog if you need it for other purposes, otherwise remove
         // private System.Windows.Forms.OpenFileDialog openFileDialog;

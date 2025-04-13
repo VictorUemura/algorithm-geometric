@@ -132,6 +132,14 @@ namespace ProcessamentoImagens
             }
         }
 
+        private void btnAbrirPoligonos_Click(object sender, EventArgs e)
+        {
+            // Cria uma instância do novo formulário
+            frmPoligonosTransformacoes formPoligonos = new frmPoligonosTransformacoes();
+            // Mostra o formulário de forma não modal (ou modal se preferir com ShowDialog())
+            formPoligonos.Show();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (bitmapGraphics != null)

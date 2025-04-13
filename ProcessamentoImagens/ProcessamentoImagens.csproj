@@ -48,9 +48,22 @@
   <ItemGroup>
     <Compile Include="ColorType\CMY.cs" />
     <Compile Include="ColorType\NormalizedRGB.cs" />
+    <Compile Include="formVisualizarMatrizes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVisualizarMatrizes.Designer.cs">
+      <DependentUpon>formVisualizarMatrizes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPoligonosTransformacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPoligonosTransformacoes.Designer.cs">
+      <DependentUpon>frmPoligonosTransformacoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Graficos\Circulo.cs" />
     <Compile Include="Graficos\Elipse.cs" />
     <Compile Include="Graficos\Reta.cs" />
+    <Compile Include="Poligonos\Poligono.cs" />
     <Compile Include="Tools\ColorManipulator.cs" />
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -78,6 +91,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
