@@ -69,12 +69,10 @@ namespace ProcessamentoImagens
         private void ApplyCenterReflectionToggle(Action<Poligono> toggleAction) { bool changed = false; foreach (CheckBox chk in flowLayoutPanelPoligonos.Controls.OfType<CheckBox>()) { if (chk.Checked && chk.Tag is int index && index >= 0 && index < listaPoligonos.Count) { Poligono poly = listaPoligonos[index]; toggleAction(poly); changed = true; } } if (changed) { RebuildAndUpdateSelectedPolygons(); } else { MessageBox.Show("Nenhum polígono selecionado para aplicar a reflexão central.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); } }
         private void RebuildAndUpdateSelectedPolygons() { float tx = (float)numTranslacaoX.Value; float ty = (float)numTranslacaoY.Value; float sx = (float)numEscalaX.Value; float sy = (float)numEscalaY.Value; float rEixo = (float)numRotacaoEixo.Value; float rCentro = (float)numRotacaoCentro.Value; float shx = (float)numCisalhamentoX.Value; float shy = (float)numCisalhamentoY.Value; centroDoPainel = new PointF(panelDesenho.ClientSize.Width / 2f, panelDesenho.ClientSize.Height / 2f); foreach (CheckBox chk in flowLayoutPanelPoligonos.Controls.OfType<CheckBox>()) { if (chk.Checked && chk.Tag is int index && index >= 0 && index < listaPoligonos.Count) { Poligono poly = listaPoligonos[index]; poly.ResetMatrix(); PointF cOrig = CalculateCentroidFromList(poly.ListaVerticesOriginais); PointF cPanel = this.centroDoPainel; poly.Translate(-cOrig.X, -cOrig.Y, MatrixOrder.Append); if (sx != 1 || sy != 1) poly.Scale(sx, sy, PointF.Empty, MatrixOrder.Append); if (shx != 0 || shy != 0) poly.Shear(shx, shy, PointF.Empty, MatrixOrder.Append); if (poly.CurrentReflectX != 1f || poly.CurrentReflectY != 1f) poly.ApplyReflectionMatrix(poly.CurrentReflectX, poly.CurrentReflectY, PointF.Empty, MatrixOrder.Append); if (rEixo != 0) poly.Rotate(rEixo, PointF.Empty, MatrixOrder.Append); poly.Translate(cOrig.X, cOrig.Y, MatrixOrder.Append); if (rCentro != 0) poly.Rotate(rCentro, cPanel, MatrixOrder.Append); if (poly.CenterReflectX != 1f || poly.CenterReflectY != 1f) { poly.ApplyReflectionMatrix(poly.CenterReflectX, poly.CenterReflectY, cPanel, MatrixOrder.Append); } if (tx != 0 || ty != 0) poly.Translate(tx, ty, MatrixOrder.Append); poly.UpdateVerticesAtuais(); } } needsRedraw = true; panelDesenho.Invalidate(); }
 
-        // Calcula o centroide dos vértices ORIGINAIS (para transformações relativas ao centro)
         private PointF CalculateCentroidFromList(List<Point> pointList)
         {
             if (pointList == null || pointList.Count == 0) return PointF.Empty;
 
-            // >>>>>>>> VERIFIQUE AQUI: Declaração de centerY <<<<<<<<<<
             double accumulatedArea = 0.0; double centerX = 0.0; double centerY = 0.0;
 
             for (int i = 0, j = pointList.Count - 1; i < pointList.Count; j = i++)
@@ -82,7 +80,6 @@ namespace ProcessamentoImagens
                 double temp = (double)pointList[i].X * pointList[j].Y - (double)pointList[j].X * pointList[i].Y;
                 accumulatedArea += temp;
                 centerX += (pointList[i].X + pointList[j].X) * temp;
-                // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
                 centerY += (pointList[i].Y + pointList[j].Y) * temp;
             }
             if (Math.Abs(accumulatedArea) < 1E-7)
@@ -93,14 +90,12 @@ namespace ProcessamentoImagens
 
             accumulatedArea *= 3.0;
 
-            // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
             if (Math.Abs(accumulatedArea) < 1E-7 || double.IsNaN(centerX / accumulatedArea) || double.IsNaN(centerY / accumulatedArea) || double.IsInfinity(centerX / accumulatedArea) || double.IsInfinity(centerY / accumulatedArea))
             {
                 Debug.WriteLine("Aviso: Divisão por zero ou resultado inválido/infinito ao calcular centroide original.");
                 if (!pointList.Any()) return PointF.Empty;
                 return new PointF((float)pointList.Average(p => p.X), (float)pointList.Average(p => p.Y));
             }
-            // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
             return new PointF((float)(centerX / accumulatedArea), (float)(centerY / accumulatedArea));
         }
 
@@ -111,5 +106,5 @@ namespace ProcessamentoImagens
         private void btnScanline_Click(object sender, EventArgs e) { if (drawingBitmap == null) return; bool filledAny = false; foreach (CheckBox chk in flowLayoutPanelPoligonos.Controls.OfType<CheckBox>()) { if (chk.Checked && chk.Tag is int index && index >= 0 && index < listaPoligonos.Count) { Poligono poly = listaPoligonos[index]; if (poly?.ListaVerticesAtuais != null && poly.ListaVerticesAtuais.Count >= 3) { PerformScanlineFill(poly.ListaVerticesAtuais); filledAny = true; } } } if (filledAny) { panelDesenho.Invalidate(); } else { MessageBox.Show("Nenhum polígono válido selecionado para preenchimento Scanline.", "Aviso Scanline", MessageBoxButtons.OK, MessageBoxIcon.Information); } }
         private void PerformScanlineFill(List<Point> polygonVertices) { if (drawingBitmap == null || polygonVertices == null || polygonVertices.Count < 3) return; int width = drawingBitmap.Width; int height = drawingBitmap.Height; BitmapData bmpData = null; try { int yMinGlobal = polygonVertices.Min(p => p.Y); int yMaxGlobal = polygonVertices.Max(p => p.Y); yMinGlobal = Math.Max(0, yMinGlobal); yMaxGlobal = Math.Min(height - 1, yMaxGlobal); var edgeTable = new Dictionary<int, List<EdgeInfoScanline>>(); for (int i = 0; i < polygonVertices.Count; i++) { Point p1 = polygonVertices[i]; Point p2 = polygonVertices[(i + 1) % polygonVertices.Count]; if (p1.Y == p2.Y) continue; if (p1.Y > p2.Y) { var temp = p1; p1 = p2; p2 = temp; } int yStart = p1.Y; int yEnd = p2.Y; float xAtYStart = p1.X; float inverseSlope = (p2.Y - p1.Y == 0) ? 0 : (float)(p2.X - p1.X) / (p2.Y - p1.Y); EdgeInfoScanline edgeInfo = new EdgeInfoScanline(yEnd, xAtYStart, inverseSlope); if (!edgeTable.ContainsKey(yStart)) { edgeTable[yStart] = new List<EdgeInfoScanline>(); } edgeTable[yStart].Add(edgeInfo); } bmpData = drawingBitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, drawingBitmap.PixelFormat); int bytesPerPixel = Image.GetPixelFormatSize(drawingBitmap.PixelFormat) / 8; if (bytesPerPixel != 4) { throw new NotSupportedException("Scanline Fill implementado apenas para 32bppArgb."); } int stride = bmpData.Stride; IntPtr ptr = bmpData.Scan0; int byteCount = Math.Abs(stride) * height; byte[] pixels = new byte[byteCount]; Marshal.Copy(ptr, pixels, 0, byteCount); byte[] colorBytes = BitConverter.GetBytes(fillColor.ToArgb()); List<EdgeInfoScanline> activeEdgeTable = new List<EdgeInfoScanline>(); for (int y = yMinGlobal; y < yMaxGlobal; y++) { activeEdgeTable.RemoveAll(edge => edge.YMax == y); if (edgeTable.ContainsKey(y)) { activeEdgeTable.AddRange(edgeTable[y]); } activeEdgeTable.Sort((e1, e2) => e1.XCurrent.CompareTo(e2.XCurrent)); for (int i = 0; i < activeEdgeTable.Count; i += 2) { if (i + 1 < activeEdgeTable.Count) { int xStart = (int)Math.Ceiling(activeEdgeTable[i].XCurrent); int xEnd = (int)Math.Floor(activeEdgeTable[i + 1].XCurrent); xStart = Math.Max(0, xStart); xEnd = Math.Min(width, xEnd); for (int x = xStart; x < xEnd; x++) { int byteIndex = y * stride + x * bytesPerPixel; if (byteIndex >= 0 && byteIndex + bytesPerPixel <= byteCount) { Buffer.BlockCopy(colorBytes, 0, pixels, byteIndex, bytesPerPixel); } } } } foreach (var edge in activeEdgeTable) { edge.XCurrent += edge.InverseSlope; } } Marshal.Copy(pixels, 0, ptr, byteCount); } catch (Exception ex) { Debug.WriteLine($"Erro durante Scanline Fill: {ex.Message}\n{ex.StackTrace}"); MessageBox.Show($"Erro no Scanline: {ex.Message}", "Erro Scanline", MessageBoxButtons.OK, MessageBoxIcon.Error); } finally { if (bmpData != null) { drawingBitmap.UnlockBits(bmpData); } } }
 
-    } // Fim da classe frmPoligonosTransformacoes
+    }
 }

@@ -1,5 +1,4 @@
-﻿// frmPrincipal.cs
-using System;
+﻿using System;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -45,8 +44,8 @@ namespace ProcessamentoImagens
         // --- Configuração da Área de Desenho ---
         private void SetupDrawingArea()
         {
-            Control drawingSurface = this.drawingPanel; // Ou this.pictBoxImg1
-            if (drawingSurface == null) { /* Tratamento de erro */ return; }
+            Control drawingSurface = this.drawingPanel;
+            if (drawingSurface == null) { return; }
 
             int width = Math.Max(1, drawingSurface.ClientSize.Width);
             int height = Math.Max(1, drawingSurface.ClientSize.Height);
@@ -57,7 +56,7 @@ namespace ProcessamentoImagens
             drawingSurface.BackgroundImage = drawingBitmap;
             drawingSurface.BackgroundImageLayout = ImageLayout.None;
 
-            drawingSurface.Resize += DrawingSurface_Resize; // Associa o evento Resize
+            drawingSurface.Resize += DrawingSurface_Resize;
         }
 
         // --- Tratador de Evento de Redimensionamento ---
@@ -114,9 +113,8 @@ namespace ProcessamentoImagens
 
                 try
                 {
-                    // *** A MÁGICA ACONTECE AQUI ***
                     DrawSelectedShape(firstPoint.Value, secondPoint);
-                    (sender as Control)?.Invalidate(); // Atualiza a área de desenho
+                    (sender as Control)?.Invalidate();
                 }
                 catch (Exception ex)
                 {
@@ -134,9 +132,7 @@ namespace ProcessamentoImagens
 
         private void btnAbrirPoligonos_Click(object sender, EventArgs e)
         {
-            // Cria uma instância do novo formulário
             frmPoligonosTransformacoes formPoligonos = new frmPoligonosTransformacoes();
-            // Mostra o formulário de forma não modal (ou modal se preferir com ShowDialog())
             formPoligonos.Show();
         }
 
@@ -146,7 +142,7 @@ namespace ProcessamentoImagens
             {
                 bitmapGraphics.Clear(Color.White);
                 firstPoint = null;
-                Control drawingSurface = this.drawingPanel; // Ou this.pictBoxImg1
+                Control drawingSurface = this.drawingPanel;
                 drawingSurface?.Invalidate();
                 UpdateStatusLabel();
             }
@@ -164,7 +160,7 @@ namespace ProcessamentoImagens
 
                     foreach (CheckBox c in groupBoxShape.Controls.OfType<CheckBox>().Where(chk => chk != selectedCheckbox))
                     {
-                        c.Checked = false; // Agora 'c' é do tipo CheckBox e tem a propriedade 'Checked'
+                        c.Checked = false;
                     }
                     UpdateStatusLabel();
                 }
@@ -187,18 +183,16 @@ namespace ProcessamentoImagens
 
         private void UpdateStatusLabel(string message = null)
         {
-            if (lblStatus == null) return; // Se não houver label de status
+            if (lblStatus == null) return;
             lblStatus.Text = message ?? (currentShape == ShapeType.None ? "Selecione uma forma para desenhar." : $"Forma: {currentShape}. Clique no primeiro ponto.");
         }
 
         // --- Método Principal de Desenho (Dispatcher) ---
         private void DrawSelectedShape(Point p1, Point p2)
         {
-            // Usa o Graphics e Bitmap que são membros da classe
             if (bitmapGraphics == null || drawingBitmap == null) return;
-            Color drawColor = Color.DodgerBlue; // Escolha uma cor
+            Color drawColor = Color.DodgerBlue;
 
-            // Instancia a classe de algoritmo necessária
             switch (currentShape)
             {
                 case ShapeType.Line:

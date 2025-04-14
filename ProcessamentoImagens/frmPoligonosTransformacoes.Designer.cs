@@ -1,17 +1,9 @@
-﻿// Certifique-se que o namespace corresponde ao seu projeto
-namespace ProcessamentoImagens
+﻿namespace ProcessamentoImagens
 {
     partial class frmPoligonosTransformacoes
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,31 +15,26 @@ namespace ProcessamentoImagens
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.panelDesenho = new System.Windows.Forms.Panel();
             this.panelControles = new System.Windows.Forms.Panel();
             this.btnLimparTudo = new System.Windows.Forms.Button();
             this.btnRemoverSelecionados = new System.Windows.Forms.Button();
-            // btnVisualizarMatrizes REMOVIDO daqui
             this.gbPreenchimento = new System.Windows.Forms.GroupBox();
             this.btnScanline = new System.Windows.Forms.Button();
             this.btnFloodFill = new System.Windows.Forms.Button();
             this.gbTransformacoes = new System.Windows.Forms.GroupBox();
-            this.btnReflexaoCentroOrigem = new System.Windows.Forms.Button(); // NOVO
-            this.btnReflexaoCentroHorizontal = new System.Windows.Forms.Button(); // NOVO
-            this.btnReflexaoCentroVertical = new System.Windows.Forms.Button(); // NOVO
-            this.lblReflexaoCentro = new System.Windows.Forms.Label(); // NOVO LABEL
+            this.btnReflexaoCentroOrigem = new System.Windows.Forms.Button();
+            this.btnReflexaoCentroHorizontal = new System.Windows.Forms.Button();
+            this.btnReflexaoCentroVertical = new System.Windows.Forms.Button();
+            this.lblReflexaoCentro = new System.Windows.Forms.Label();
             this.numRotacaoCentro = new System.Windows.Forms.NumericUpDown();
             this.lblRotacaoCentro = new System.Windows.Forms.Label();
-            this.btnReflexaoConjunto = new System.Windows.Forms.Button(); // Mantido (Eixo)
-            this.btnReflexaoHorizontal = new System.Windows.Forms.Button(); // Mantido (Eixo)
-            this.btnReflexaoVertical = new System.Windows.Forms.Button(); // Mantido (Eixo)
-            this.lblReflexaoEixo = new System.Windows.Forms.Label(); // LABEL RENOMEADO
+            this.btnReflexaoConjunto = new System.Windows.Forms.Button();
+            this.btnReflexaoHorizontal = new System.Windows.Forms.Button();
+            this.btnReflexaoVertical = new System.Windows.Forms.Button();
+            this.lblReflexaoEixo = new System.Windows.Forms.Label();
             this.numCisalhamentoY = new System.Windows.Forms.NumericUpDown();
             this.numCisalhamentoX = new System.Windows.Forms.NumericUpDown();
             this.lblCisalhamento = new System.Windows.Forms.Label();
@@ -82,14 +69,13 @@ namespace ProcessamentoImagens
             this.panelDesenho.Location = new System.Drawing.Point(0, 0);
             this.panelDesenho.Margin = new System.Windows.Forms.Padding(4);
             this.panelDesenho.Name = "panelDesenho";
-            this.panelDesenho.Size = new System.Drawing.Size(582, 713); // Altura aumentada
+            this.panelDesenho.Size = new System.Drawing.Size(582, 713);
             this.panelDesenho.TabIndex = 0;
             //
             // panelControles
             //
             this.panelControles.Controls.Add(this.btnLimparTudo);
             this.panelControles.Controls.Add(this.btnRemoverSelecionados);
-            // btnVisualizarMatrizes REMOVIDO daqui
             this.panelControles.Controls.Add(this.gbPreenchimento);
             this.panelControles.Controls.Add(this.gbTransformacoes);
             this.panelControles.Controls.Add(this.flowLayoutPanelPoligonos);
@@ -99,28 +85,28 @@ namespace ProcessamentoImagens
             this.panelControles.Margin = new System.Windows.Forms.Padding(4);
             this.panelControles.Name = "panelControles";
             this.panelControles.Padding = new System.Windows.Forms.Padding(10);
-            this.panelControles.Size = new System.Drawing.Size(200, 713); // Altura aumentada
+            this.panelControles.Size = new System.Drawing.Size(200, 713);
             this.panelControles.TabIndex = 1;
             //
             // btnLimparTudo
             //
             this.btnLimparTudo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLimparTudo.Location = new System.Drawing.Point(14, 673); // Y ajustado
+            this.btnLimparTudo.Location = new System.Drawing.Point(14, 673);
             this.btnLimparTudo.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimparTudo.Name = "btnLimparTudo";
             this.btnLimparTudo.Size = new System.Drawing.Size(172, 28);
-            this.btnLimparTudo.TabIndex = 6; // Index pode mudar
+            this.btnLimparTudo.TabIndex = 6;
             this.btnLimparTudo.Text = "Limpar Tudo";
             this.btnLimparTudo.UseVisualStyleBackColor = true;
             //
             // btnRemoverSelecionados
             //
             this.btnRemoverSelecionados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoverSelecionados.Location = new System.Drawing.Point(14, 637); // Y ajustado
+            this.btnRemoverSelecionados.Location = new System.Drawing.Point(14, 637); 
             this.btnRemoverSelecionados.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoverSelecionados.Name = "btnRemoverSelecionados";
             this.btnRemoverSelecionados.Size = new System.Drawing.Size(172, 28);
-            this.btnRemoverSelecionados.TabIndex = 5; // Index pode mudar
+            this.btnRemoverSelecionados.TabIndex = 5; 
             this.btnRemoverSelecionados.Text = "Remover Selecionados";
             this.btnRemoverSelecionados.UseVisualStyleBackColor = true;
             //
@@ -129,12 +115,12 @@ namespace ProcessamentoImagens
             this.gbPreenchimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbPreenchimento.Controls.Add(this.btnScanline);
             this.gbPreenchimento.Controls.Add(this.btnFloodFill);
-            this.gbPreenchimento.Location = new System.Drawing.Point(14, 527); // Y ajustado
+            this.gbPreenchimento.Location = new System.Drawing.Point(14, 527);
             this.gbPreenchimento.Margin = new System.Windows.Forms.Padding(4);
             this.gbPreenchimento.Name = "gbPreenchimento";
             this.gbPreenchimento.Padding = new System.Windows.Forms.Padding(4);
             this.gbPreenchimento.Size = new System.Drawing.Size(172, 100);
-            this.gbPreenchimento.TabIndex = 3; // Index pode mudar
+            this.gbPreenchimento.TabIndex = 3;
             this.gbPreenchimento.TabStop = false;
             this.gbPreenchimento.Text = "Preenchimento";
             //
@@ -187,49 +173,49 @@ namespace ProcessamentoImagens
             this.gbTransformacoes.Margin = new System.Windows.Forms.Padding(4);
             this.gbTransformacoes.Name = "gbTransformacoes";
             this.gbTransformacoes.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTransformacoes.Size = new System.Drawing.Size(172, 359); // <<< ALTURA AUMENTADA SIGNIFICATIVAMENTE
+            this.gbTransformacoes.Size = new System.Drawing.Size(172, 359);
             this.gbTransformacoes.TabIndex = 2;
             this.gbTransformacoes.TabStop = false;
             this.gbTransformacoes.Text = "Transformações";
             //
             // btnReflexaoCentroOrigem
             //
-            this.btnReflexaoCentroOrigem.Location = new System.Drawing.Point(90, 320); // <<< NOVO
+            this.btnReflexaoCentroOrigem.Location = new System.Drawing.Point(90, 320);
             this.btnReflexaoCentroOrigem.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoCentroOrigem.Name = "btnReflexaoCentroOrigem";
             this.btnReflexaoCentroOrigem.Size = new System.Drawing.Size(70, 25);
-            this.btnReflexaoCentroOrigem.TabIndex = 20; // Index ajustado
+            this.btnReflexaoCentroOrigem.TabIndex = 20;
             this.btnReflexaoCentroOrigem.Text = "Origem";
             this.btnReflexaoCentroOrigem.UseVisualStyleBackColor = true;
             //
             // btnReflexaoCentroHorizontal
             //
-            this.btnReflexaoCentroHorizontal.Location = new System.Drawing.Point(90, 291); // <<< NOVO
+            this.btnReflexaoCentroHorizontal.Location = new System.Drawing.Point(90, 291);
             this.btnReflexaoCentroHorizontal.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoCentroHorizontal.Name = "btnReflexaoCentroHorizontal";
             this.btnReflexaoCentroHorizontal.Size = new System.Drawing.Size(70, 25);
-            this.btnReflexaoCentroHorizontal.TabIndex = 19; // Index ajustado
+            this.btnReflexaoCentroHorizontal.TabIndex = 19;
             this.btnReflexaoCentroHorizontal.Text = "Horizontal";
             this.btnReflexaoCentroHorizontal.UseVisualStyleBackColor = true;
             //
             // btnReflexaoCentroVertical
             //
-            this.btnReflexaoCentroVertical.Location = new System.Drawing.Point(10, 291); // <<< NOVO
+            this.btnReflexaoCentroVertical.Location = new System.Drawing.Point(10, 291);
             this.btnReflexaoCentroVertical.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoCentroVertical.Name = "btnReflexaoCentroVertical";
             this.btnReflexaoCentroVertical.Size = new System.Drawing.Size(70, 25);
-            this.btnReflexaoCentroVertical.TabIndex = 18; // Index ajustado
+            this.btnReflexaoCentroVertical.TabIndex = 18;
             this.btnReflexaoCentroVertical.Text = "Vertical";
             this.btnReflexaoCentroVertical.UseVisualStyleBackColor = true;
             //
             // lblReflexaoCentro
             //
             this.lblReflexaoCentro.AutoSize = true;
-            this.lblReflexaoCentro.Location = new System.Drawing.Point(7, 273); // <<< NOVO
+            this.lblReflexaoCentro.Location = new System.Drawing.Point(7, 273);
             this.lblReflexaoCentro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReflexaoCentro.Name = "lblReflexaoCentro";
             this.lblReflexaoCentro.Size = new System.Drawing.Size(108, 16);
-            this.lblReflexaoCentro.TabIndex = 17; // Index ajustado
+            this.lblReflexaoCentro.TabIndex = 17;
             this.lblReflexaoCentro.Text = "Reflexão Centro:";
             //
             // numRotacaoCentro
@@ -254,7 +240,7 @@ namespace ProcessamentoImagens
             //
             // btnReflexaoConjunto
             //
-            this.btnReflexaoConjunto.Location = new System.Drawing.Point(90, 250); // Y mantido (agora abaixo de C. Horizontal)
+            this.btnReflexaoConjunto.Location = new System.Drawing.Point(90, 250);
             this.btnReflexaoConjunto.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoConjunto.Name = "btnReflexaoConjunto";
             this.btnReflexaoConjunto.Size = new System.Drawing.Size(70, 25);
@@ -264,7 +250,7 @@ namespace ProcessamentoImagens
             //
             // btnReflexaoHorizontal
             //
-            this.btnReflexaoHorizontal.Location = new System.Drawing.Point(90, 221); // Y mantido
+            this.btnReflexaoHorizontal.Location = new System.Drawing.Point(90, 221);
             this.btnReflexaoHorizontal.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoHorizontal.Name = "btnReflexaoHorizontal";
             this.btnReflexaoHorizontal.Size = new System.Drawing.Size(70, 25);
@@ -274,7 +260,7 @@ namespace ProcessamentoImagens
             //
             // btnReflexaoVertical
             //
-            this.btnReflexaoVertical.Location = new System.Drawing.Point(10, 221); // Y mantido
+            this.btnReflexaoVertical.Location = new System.Drawing.Point(10, 221);
             this.btnReflexaoVertical.Margin = new System.Windows.Forms.Padding(2);
             this.btnReflexaoVertical.Name = "btnReflexaoVertical";
             this.btnReflexaoVertical.Size = new System.Drawing.Size(70, 25);
@@ -285,12 +271,12 @@ namespace ProcessamentoImagens
             // lblReflexaoEixo
             //
             this.lblReflexaoEixo.AutoSize = true;
-            this.lblReflexaoEixo.Location = new System.Drawing.Point(7, 203); // Y mantido
+            this.lblReflexaoEixo.Location = new System.Drawing.Point(7, 203);
             this.lblReflexaoEixo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReflexaoEixo.Name = "lblReflexaoEixo";
-            this.lblReflexaoEixo.Size = new System.Drawing.Size(93, 16); // Texto alterado
+            this.lblReflexaoEixo.Size = new System.Drawing.Size(93, 16);
             this.lblReflexaoEixo.TabIndex = 13;
-            this.lblReflexaoEixo.Text = "Reflexão Eixo:"; // Texto alterado
+            this.lblReflexaoEixo.Text = "Reflexão Eixo:";
             //
             // numCisalhamentoY
             //
@@ -403,11 +389,11 @@ namespace ProcessamentoImagens
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 713); // Altura aumentada
+            this.ClientSize = new System.Drawing.Size(782, 713);
             this.Controls.Add(this.panelDesenho);
             this.Controls.Add(this.panelControles);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(800, 760); // Altura mínima aumentada
+            this.MinimumSize = new System.Drawing.Size(800, 760);
             this.Name = "frmPoligonosTransformacoes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Polígonos, Transformações e Preenchimento";
@@ -450,18 +436,17 @@ namespace ProcessamentoImagens
         private System.Windows.Forms.Button btnReflexaoConjunto;
         private System.Windows.Forms.Button btnReflexaoHorizontal;
         private System.Windows.Forms.Button btnReflexaoVertical;
-        private System.Windows.Forms.Label lblReflexaoEixo; // Renomeado
+        private System.Windows.Forms.Label lblReflexaoEixo;
         private System.Windows.Forms.GroupBox gbPreenchimento;
         private System.Windows.Forms.Button btnScanline;
         private System.Windows.Forms.Button btnFloodFill;
         private System.Windows.Forms.NumericUpDown numRotacaoCentro;
         private System.Windows.Forms.Label lblRotacaoCentro;
-        // btnVisualizarMatrizes REMOVIDO daqui
         private System.Windows.Forms.Button btnLimparTudo;
         private System.Windows.Forms.Button btnRemoverSelecionados;
-        private System.Windows.Forms.Button btnReflexaoCentroOrigem; // NOVO
-        private System.Windows.Forms.Button btnReflexaoCentroHorizontal; // NOVO
-        private System.Windows.Forms.Button btnReflexaoCentroVertical; // NOVO
-        private System.Windows.Forms.Label lblReflexaoCentro; // NOVO
+        private System.Windows.Forms.Button btnReflexaoCentroOrigem;
+        private System.Windows.Forms.Button btnReflexaoCentroHorizontal;
+        private System.Windows.Forms.Button btnReflexaoCentroVertical;
+        private System.Windows.Forms.Label lblReflexaoCentro;
     }
 }

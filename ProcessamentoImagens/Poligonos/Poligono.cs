@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Diagnostics; // Para Debug
+using System.Diagnostics;
 
 namespace ProcessamentoImagens
 {
     public class Poligono
     {
-        // Propriedades existentes
         public List<Point> ListaVerticesOriginais { get; private set; }
         public Matrix MatrizAcumulada { get; private set; }
         public List<Point> ListaVerticesAtuais { get; private set; }
-
-        // Estado da reflexão em torno do EIXO/CENTROIDE ORIGINAL (existente)
         public float CurrentReflectX { get; private set; } = 1f;
         public float CurrentReflectY { get; private set; } = 1f;
-
-        // Estado da reflexão em torno do CENTRO DO PAINEL
         public float CenterReflectX { get; private set; } = 1f;
         public float CenterReflectY { get; private set; } = 1f;
 
@@ -46,7 +41,6 @@ namespace ProcessamentoImagens
                 else
                 {
                     Debug.WriteLine("Aviso: Matriz de transformação não é invertível. Vértices atuais podem não ser calculados corretamente.");
-                    // Mantem os pontos como estavam antes da transformação falha.
                 }
             }
             catch (Exception ex)
@@ -56,12 +50,10 @@ namespace ProcessamentoImagens
             ListaVerticesAtuais = temp.Select(pf => Point.Round(pf)).ToList();
         }
 
-        // Calcula o centroide dos vértices ATUAIS
         public PointF CalculateCurrentCentroid()
         {
             if (ListaVerticesAtuais == null || ListaVerticesAtuais.Count == 0) return PointF.Empty;
 
-            // >>>>>>>> VERIFIQUE AQUI: Declaração de centerY <<<<<<<<<<
             double accumulatedArea = 0.0; double centerX = 0.0; double centerY = 0.0;
 
             for (int i = 0, j = ListaVerticesAtuais.Count - 1; i < ListaVerticesAtuais.Count; j = i++)
@@ -77,27 +69,22 @@ namespace ProcessamentoImagens
                 double temp = (double)ListaVerticesAtuais[i].X * ListaVerticesAtuais[j].Y - (double)ListaVerticesAtuais[j].X * ListaVerticesAtuais[i].Y;
                 accumulatedArea += temp;
                 centerX += (ListaVerticesAtuais[i].X + ListaVerticesAtuais[j].X) * temp;
-                // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
                 centerY += (ListaVerticesAtuais[i].Y + ListaVerticesAtuais[j].Y) * temp;
             }
             if (Math.Abs(accumulatedArea) < 1E-7)
             {
-                // Evita NaN se todos os pontos forem iguais ou colineares e a média for calculada
                 if (!ListaVerticesAtuais.Any()) return PointF.Empty;
                 return new PointF((float)ListaVerticesAtuais.Average(p => p.X), (float)ListaVerticesAtuais.Average(p => p.Y));
             }
 
             accumulatedArea *= 3.0;
 
-            // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
             if (Math.Abs(accumulatedArea) < 1E-7 || double.IsNaN(centerX / accumulatedArea) || double.IsNaN(centerY / accumulatedArea) || double.IsInfinity(centerX / accumulatedArea) || double.IsInfinity(centerY / accumulatedArea))
             {
                 Debug.WriteLine("Aviso: Divisão por zero ou resultado inválido/infinito ao calcular centroide atual.");
-                // Fallback mais seguro
                 if (!ListaVerticesAtuais.Any()) return PointF.Empty;
                 return new PointF((float)ListaVerticesAtuais.Average(p => p.X), (float)ListaVerticesAtuais.Average(p => p.Y));
             }
-            // >>>>>>>> VERIFIQUE AQUI: Uso de centerY <<<<<<<<<<
             return new PointF((float)(centerX / accumulatedArea), (float)(centerY / accumulatedArea));
         }
 
